@@ -1,3 +1,4 @@
+# coding:utf8
 def constant(f):
     def fset(self, value):
         raise TypeError
@@ -28,12 +29,16 @@ class Config(object):
         return "tg_works"
 
     @constant
-    def DBTableStatus():
-        return "tg_status"
+    def DBTableMessages():
+        return "tg_messages"
+
+    @constant
+    def DBTableMessagesRequest():
+        return """(ID INT NOT NULL AUTO_INCREMENT Primary key, chat_id INT NOT NULL, work_id INT NOT NULL, message INT NOT NULL)"""
 
     @constant
     def DBTableWorksRequest():
-        return """(ID INT NOT NULL AUTO_INCREMENT Primary key, chat_id INT NOT NULL, header TEXT COLLATE 'utf8_general_ci', text TEXT COLLATE 'utf8_general_ci', timestap INT NOT NULL, status INT NOT NULL)"""
+        return """(ID INT NOT NULL AUTO_INCREMENT Primary key, chat_id INT NOT NULL, header TEXT COLLATE 'utf8_general_ci', text TEXT COLLATE 'utf8_general_ci', timestap INT NOT NULL, status INT NOT NULL, uah INT, usd INT)"""
 
     @constant
     def DBHost():

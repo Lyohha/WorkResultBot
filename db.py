@@ -13,6 +13,7 @@ class DataBase:
         try:
             self.__db = MySQLdb.connect(CONFIG.DBHost, CONFIG.DBLogin, CONFIG.DBPassword, CONFIG.DBName)
             self.__cursor = self.__db.cursor()
+            self.__db.set_character_set('utf8mb4')
         except MySQLdb.Error as e:
             print("[load_db]: DataBase Error " + e.args[1])
             return False

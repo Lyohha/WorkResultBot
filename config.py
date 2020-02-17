@@ -38,7 +38,7 @@ class Config(object):
 
     @constant
     def DBTableWorksRequest():
-        return """(ID INT NOT NULL AUTO_INCREMENT Primary key, chat_id INT NOT NULL, header TEXT COLLATE 'utf8_general_ci', text TEXT COLLATE 'utf8_general_ci', timestap INT NOT NULL, status INT NOT NULL, uah INT, usd INT)"""
+       return """(ID INT NOT NULL AUTO_INCREMENT Primary key, chat_id INT NOT NULL, header TEXT COLLATE 'utf8mb4_unicode_ci', text TEXT COLLATE 'utf8mb4_unicode_ci', timestap INT NOT NULL, status INT NOT NULL, uah INT, usd INT)"""
 
     @constant
     def DBHost():

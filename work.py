@@ -1,4 +1,5 @@
 # coding:utf8
+import time
 from db import DataBase
 import tg as TG
 import encoding as Encode
@@ -119,13 +120,9 @@ class Work:
         work.id = db_object[0]
         work.chat_id = db_object[1]
         if db_object[2] is not None:
-            work.header = db_object[2].encode('utf8').decode()
-            Encode.decode(db_object[2])
-            print(db_object[2].encode('utf8'))
-            print(db_object[2].encode('utf8').decode('utf8'))
-            print(work.header)
+            work.header = db_object[2]
         if db_object[3] is not None:
-            work.text = db_object[3].encode().decode()
+            work.text = db_object[3]
         work.timestap = db_object[4]
         work.status = db_object[5]
         if db_object[6] is not None:
@@ -177,4 +174,6 @@ class Work:
                 if work.status == 6:
                     TG.TelegramBot.send_message(chat_id, work.header + "\n" + work.text + "\n" +
                                                 ("" if work.uah < 0 else "UAH: " + str(work.uah) + "\n") +
-                                                ("" if work.usd < 0 else "USD: " + str(work.usd) + "\n"))
+                                                ("" if work.usd < 0 else "USD: " + str(work.usd) + "\n") +
+                                                "Дата завершения: " +
+                                                time.strftime("%d.%m.%Y", time.localtime(work.timestap)))

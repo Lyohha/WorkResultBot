@@ -1,5 +1,6 @@
 # coding:utf8
 import telebot
+import re
 from work import *
 from datetime import *
 import tg as TG
@@ -74,6 +75,9 @@ class WorkAction:
             msg = TG.TelegramBot.send_message(self.__work.chat_id, "Выберите валюту.", keyboard)
             self.__work.add_message(msg.message_id)
         elif self.__work.status == 3:
+            msg = re.sub(r"\D", "", msg)
+            if len(msg) == 0:
+                msg = "-1"
             if int(msg) < 0:
                 TG.TelegramBot.send_message(self.__work.chat_id, "Сумма должна быть неотрицательная!\n")
             else:
@@ -95,6 +99,9 @@ class WorkAction:
                                                       self.__work.usd) + "\n"), keyboard)
                 self.__work.add_message(msg.message_id)
         elif self.__work.status == 4:
+            msg = re.sub(r"\D", "", msg)
+            if len(msg) == 0:
+                msg = "-1"
             if int(msg) < 0:
                 TG.TelegramBot.send_message(self.__work.chat_id, "Сумма должна быть неотрицательная!\n")
             else:

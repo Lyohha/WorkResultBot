@@ -169,6 +169,8 @@ class Work:
 
     @staticmethod
     def show_user_works(chat_id):
+        total_usd = 0
+        total_uah = 0
         for work in Work.list:
             if work.chat_id == chat_id:
                 if work.status == 6:
@@ -177,3 +179,8 @@ class Work:
                                                 ("" if work.usd < 0 else "USD: " + str(work.usd) + "\n") +
                                                 "Дата завершения: " +
                                                 time.strftime("%d.%m.%Y", time.localtime(work.timestap)))
+                    if work.usd != -1:
+                        total_usd += work.usd
+                    if work.uah != -1:
+                        total_uah += work.uah
+        TG.TelegramBot.send_message(chat_id, "Итого: " + "\nUSD: " + str(total_usd) + "\nUAH: " + str(total_uah))
